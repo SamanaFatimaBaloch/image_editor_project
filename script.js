@@ -56,7 +56,6 @@ let filters =
     },
 
 }
-// Now first of all we want ke jo bi image mein choose krun wo image wali jga pr dikhne lag jaye
 const imageCanvas = document.querySelector("#image-canvas")
 const imginput = document.querySelector("#image-input")
 const canvasCtx = imageCanvas.getContext("2d")
@@ -87,25 +86,10 @@ function createFilterElement(name, unit = "%", value, min ,max)
     div.appendChild(p)
     div.appendChild(input)
 
-
-    // Now we want to change the values effect of filters for this we will apply a listener
     input.addEventListener("input",(e) =>
     {
-        // console.log(input.value); // Ab agar ham range ko move krain to values print hon gi console mein
-        //Now we want ke yeh values ke sath filter implement krain ham pictures pr
-
-        // filter[name] // name uss filter ka naam ha jo change hoo rha ha
-
-        // {***************************************************************
-        
-        // Samajhne ke liye we will console the name
-        // console.log(name) // Ab range change krain gy to jis ki range change krain gy uss ka name console mein print hoo ga
-
-    // }********************************************************************
         filters[name].value = input.value
         applyFilters();
-
-
     })
     
     return div;
@@ -113,61 +97,35 @@ function createFilterElement(name, unit = "%", value, min ,max)
 function createFilter()
 {
     Object.keys(filters).forEach(filter =>{
-    
-    
-        // **************************************************************************
-        // {
-        // console.log(filters[filter])//jo filters mein har filter ha uss ki value print hony lgy gi jesy
-        // console.log(filters[ "brightness" ]) // this will print value of brightness property only
-    
-        // console.log(filter, filters[filter]) // this will print the name of filter with the value of the filter 
-        
-        // }
-        // ************************************************************************************
-    
-    
         const filterElement = createFilterElement(filter, filters[filter].unit, filters[filter].value, filters[filter].min, filters[filter].max);
-    
-        // console.log(filterElement)//saray filters ka aik aik element ban jae ga
-    
         filtersContainer.appendChild(filterElement)
-        
     })  
 
 }
 
 createFilter();
 
-// 1:13 Sheriyan coding
-
 imginput.addEventListener("change", (e)=>
 {
     const imagePlaceHolder = document.querySelector(".placeholder")
     imageCanvas.style.display = "block"
     imagePlaceHolder.style.display = "none";
-    // console.log("Change Event Fired")// jesy hi koi image select krain gy console mein yeh likhae ga
-
     const file = event.target.files[0]
-    // console.log(file)//Jo file select krain gy uss ki details mil jayen gi idhar
-
-    // Now we have to show the selected image in canvas...
-    // For this we will create an image element using JS
-
     const image = new Image()
-    image.src = URL.createObjectURL(file);// User jo bi image select kry ga wo yahan pr show hoo jaye gi
+    image.src = URL.createObjectURL(file);
 
     image.onload = () =>
     {
         img = image;
-        imageCanvas.width = image.width // canvas ki width image ki width ke equal taa ke image achy sy dikh jaye
+        imageCanvas.width = image.width 
         imageCanvas.height = image.height
-        canvasCtx.drawImage(image, 0, 0) // image canvas mein dikh jaye gi iss line ki wja sy
+        canvasCtx.drawImage(image, 0, 0)
     }
 })
 
 function applyFilters()
 {
-    canvasCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height)// Jab aik new img le load kr rhy thy to pichli image clear nhi hoo rhi thi uss ke uper hi agli img load hoo rhi thi to pichli image ko clear krne ke liye i used canvasCtx.clear
+    canvasCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height) 
     canvasCtx.filter = `
     brightness(${filters.Brightness.value}${filters.Brightness.unit})
     contrast(${filters.Contrast.value}${filters.Contrast.unit})
