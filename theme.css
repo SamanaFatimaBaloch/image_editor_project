@@ -22,7 +22,7 @@
     --padding-2xl: 2.5rem;
     --padding-3xl: 3rem;
 
-    /* Gutter */ /*jahan pr display flex ya grid use kr rhy hoty hain un ke bech mein spaces ko gutter kehty*/
+    /* Gutter */ 
 
     --gutter-sm: 0.5rem;
     --gutter-md: 1rem;
