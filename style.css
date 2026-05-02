@@ -68,7 +68,7 @@ main section .bottom
     background-color: var(--bg-secondary-color);
     width: 100%;
     padding: var(--padding-3xl);
-    aspect-ratio: 6/3.5;  /* Jitni bottom ki  widtg hoo gi utni hi height hoye gii khud hii calculate kr le ga*/
+    aspect-ratio: 6/3.5;
     border-radius: var(--border-radius-xl);
     display: flex;
     justify-content: center;
