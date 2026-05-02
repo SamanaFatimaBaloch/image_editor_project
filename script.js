@@ -7,7 +7,7 @@ let filters =
         unit: "%"
     },
     Contrast: {
-        value: 100,
+        value: 100, 
         min: 0,
         max: 200,
         unit: "%"
